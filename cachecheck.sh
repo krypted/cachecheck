@@ -7,6 +7,5 @@
 #Note - each server is listed once whether it caches iCloud data or just shared assets
 #
 #
-$
 result=`/usr/bin/AssetCacheLocatorUtil 2>&1 | grep guid | awk '{print$4}' | sed 's/^\(.*\):.*$/\1/' | sort | uniq`
 echo "<result>$result</result>"
