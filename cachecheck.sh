@@ -9,7 +9,7 @@
 #
 osvers=$(sw_vers -productVersion | awk -F. '{print $2}')
 
-if [ "$osvers" < "12" ]; then
+if [ "$osvers" -lt "12" ]; then
   result=""
 else
   result=`/usr/bin/AssetCacheLocatorUtil 2>&1 | grep guid | awk '{print$4}' | sed 's/^\(.*\):.*$/\1/' | sort | uniq`
