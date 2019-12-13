@@ -7,5 +7,13 @@
 #Note - each server is listed once whether it caches iCloud data or just shared assets
 #
 #
-result=`/usr/bin/AssetCacheLocatorUtil 2>&1 | grep guid | awk '{print$4}' | sed 's/^\(.*\):.*$/\1/' | sort | uniq`
+
+osvers=$(sw_vers -productVersion | awk -F. '{print $2}')
+
+if [ "$osvers" -lt "12" ]; then
+  result=""
+else
+  result=`/usr/bin/AssetCacheLocatorUtil 2>&1 | grep guid | awk '{print$4}' | sed 's/^\(.*\):.*$/\1/' | sort | uniq`
+fi
+
 echo "<result>$result</result>"
